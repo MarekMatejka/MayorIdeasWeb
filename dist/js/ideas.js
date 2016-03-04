@@ -11,7 +11,7 @@ $(document).ready(function() {
     });
 
     $("#ideas").on("click", ".bold", function(event){
-        var row = table.row($(this).parents('tr'));
+        var row = table.row($(this));
         var idea = row.data();
 
         sessionStorage.setItem("id", idea.id);
@@ -34,9 +34,7 @@ $(document).ready(function() {
                     {"data": "ideaState", "title" : "Idea State", "class" : "cell-centered"},
                     {"data": "score", "title" : "Score", "class" : "cell-centered"},
                     {"data": "numOfComments", "title" : "# of Comments", "class" : "cell-centered"},
-                    {"data": "numOfVotes", "title" : "# of Votes", "class" : "cell-centered"},
-                    {"data" : null, title: "Edit", "class" : "cell-centered", "defaultContent": 
-                        "<button class='btn btn-info' type='button' data-toggle='modal' data-target='#recipientsForm'><i class='glyphicon glyphicon-edit'/></button>"}
+                    {"data": "numOfVotes", "title" : "# of Votes", "class" : "cell-centered"}
                 ],
                 columnDefs: [
                     {
