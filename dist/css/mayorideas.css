@@ -1,0 +1,73 @@
+.top-right-button {
+	float: right;
+	margin: 45px 0px 0px 5px;
+}
+
+.drop-area {
+	display: block;
+	color: #A05A2C;
+	font-size: 24px;
+	max-width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	border: 2px dashed #A9A9A9;
+	height: 150px;
+	text-align: center;
+	line-height: 150px;
+	margin-bottom: 27px;
+}
+
+.bold:hover {
+	font-weight: bold;
+}
+
+.state-open {
+	color: #5f8dd3;
+}
+
+.state-inprogress {
+	color: #ffbb33;
+}
+
+.state-closed {
+	color: #99cc00;
+}
+
+.cell-centered {
+	text-align: center;
+}
+
+.table-buttons {
+	margin-right: 15px;
+	margin-bottom: 10px;
+	float: right;
+}
+
+.loadingText {
+	margin-top: 20px;
+	margin-bottom: 20px;
+}
+
+.centered {
+	display: flex;
+  	align-items: center;
+  	justify-content: center
+}
+
+.copyright {
+	color: #616161;
+	font-size: 0.9em;
+	line-height: 1;
+	margin-left: 1em;
+	padding: 3;
+	padding-left: 1em;
+	margin-bottom:8px; 
+	margin-top:8px;
+}
+
+.copyright img {
+	max-height: 17px;
+	margin-top: -2px;
+	padding-left: 5px;
+	padding-right: 4.5px;
+}

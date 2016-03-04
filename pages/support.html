@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Management Console for eReception.">
+    <meta name="author" content="4M-Consulting">
+    <link rel="shortcut icon" type="image/x-icon" href="../ereception/assets/css/images/favicon.ico" />
+    <title>eReception - Management Console</title>
+
+    <!-- CSS -->
+    <link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="../dist/css/parcels.css" rel="stylesheet" type="text/css">
+    <link href="../bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" style="padding: 10px 15px"href="overview.html">
+                    <img height="30px" width="120px" src="../ereception/assets/css/images/ereception_logo_full_dark.png">
+                </a>
+            </div>
+
+            <!--
+
+            **************************************
+            *****        TOPBAR MENU         *****
+            **************************************
+
+            -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <i class="fa fa-user fa-fw" style="padding:3px 20px;"></i> Logged in as:
+                            <p style="text-align:center;" id='loggedInUser'></p>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#" class="logout"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <!--
+
+            **************************************
+            *****       SIDEBAR MENU         *****
+            **************************************
+
+            -->
+
+            <div class="navbar-default sidebar" role="navigation">
+                <div class="sidebar-nav navbar-collapse">
+                    <ul class="nav" id="side-menu">
+                        <li>
+                            <a href="overview.html"><i class="fa fa-dashboard fa-fw"></i> Overview</a>
+                        </li>
+                        <li>
+                            <a href="uncollected_parcels.html"><i class="fa fa-archive fa-fw"></i> Uncollected Parcels</a>
+                        </li>
+                        <li>
+                            <a href="recipients.html"><i class="fa fa-users fa-fw"></i> Recipients</a>
+                        </li>
+                        <li id="staffSideMenu">
+                            <a href="staff.html"><i class="fa fa-sitemap fa-fw"></i> Staff</a>
+                        </li>
+                        <li id="supportSideMenu">
+                            <a href="support.html"><i class="fa fa-support fa-fw"></i> Support</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!--
+
+        **************************************
+        *****          MAIN BODY         *****
+        **************************************
+
+        -->
+
+        <div id="page-wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h1 id="title" class="page-header">Support details</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div>
+                                <div class="panel panel-green">
+                                    <div class="panel-heading">
+                                        General ideas and improvements
+                                    </div>
+                                    <div class="panel-body">
+                                        <p>If you have any ideas for improvement, new features, typos or something else that should be changed please send me an email to <b>support@ereception.eu</b></p>
+                                        <br>
+                                        <p>Examples include:</p>
+                                        <ul>
+                                            <li>I would like a different chart view.</li>
+                                            <li>I just spotted a typo on one of the screens.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel panel-yellow">
+                                    <div class="panel-heading">
+                                        Bugs and non-critical problems
+                                    </div>
+                                    <div class="panel-body">
+                                        <p>If you see any functionality that does not work and it is not a critical functionality please send me an email to <b>support@ereception.eu</b></p>
+                                        <br>
+                                        <p>Examples include:</p>
+                                        <ul>
+                                            <li>Charts are not correctly showing today's data.</li>
+                                            <li>When I click on a recipient it shows an error/nothing happens.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                <div class="panel panel-red">
+                                    <div class="panel-heading">
+                                        Critical errors
+                                    </div>
+                                    <div class="panel-body">
+                                        <p>If the system or a critical functionality is not working text/call me on <b>+44 7784 361 380.</b></p>
+                                        <br>
+                                        <p>Examples include:</p>
+                                        <ul>
+                                            <li>The whole system crashed and I cannot do anything.</li>
+                                            <li>I cannot collect/hand out parcels.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="centered">
+                    <div class="col-lg-12" style="height:2px; width:50%; background-color:#eee;"></div>
+                </div>
+                <div class="col-lg-12 centered copyright">
+                    eReception.eu, a <img src="../ereception/assets/css/images/4M red.png" alt=""/> project. All rights reserved.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+
+    **************************************
+    *****         JS SCRIPTS         *****
+    **************************************
+
+    -->
+
+    <!-- Libs -->
+    <script src="../bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../bower_components/metisMenu/dist/metisMenu.min.js"></script>
+    <script src="../dist/js/libs/js.cookies.js" type="text/javascript"></script>
+
+    <!-- Custom JavaScript -->
+    <script src="../dist/js/global_settings.js" type="text/javascript"></script>
+    <script src="../dist/js/sb-admin-2.js"></script>
+    <script src="../dist/js/my_cookies.js" type="text/javascript"></script>
+    <script src="../dist/js/topbar.js" type="text/javascript"></script>
+</body>
+
+</html>
