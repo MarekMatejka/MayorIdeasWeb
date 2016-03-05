@@ -21,6 +21,11 @@
 	font-weight: bold;
 }
 
+#carousel img {
+	display: block;
+	margin: 0 auto;
+}
+
 .state-open {
 	color: #5f8dd3;
 }

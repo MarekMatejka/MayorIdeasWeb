@@ -6,31 +6,16 @@ $(document).ready(function() {
 
 	//var id = sessionStorage.getItem("id");
     var id = 10;
-    setupCarousel();
 
     $.get(url+"/image/get/idea/"+id, function(data) {
         var ideaImageIds = JSON.parse(data);
         console.log(ideaImageIds);
         for (var i = 0; i < ideaImageIds.length; i++) {
-              $('.carousel').slick('slickAdd','<div><img data-lazy="'+(url+"/image/get/"+ideaImageIds[i])+'"/></div>');
+            console.log("adding picture "+i);
+            $("#carousel").append(  "<div class='col-lg-"+(12/ideaImageIds.length)+"'>"+
+                                        "<img src='"+(url+"/image/get/"+ideaImageIds[i])+"' height='300px'></img>"+
+                                    "</div>")
         }
     }, "text");
 
-    function setupCarousel() {
-        $('.carousel').slick({
-            dots: true,
-            infinite: true,
-            speed: 500,
-            fade: true,
-            cssEase: 'linear',
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            autoplay: true,
-            autoplaySpeed: 5000,
-            lazyLoad: 'ondemand',
-            adaptiveHeight: true
-        });
-
-
-    }
 });	
