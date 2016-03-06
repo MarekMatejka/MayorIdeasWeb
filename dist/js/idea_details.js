@@ -17,8 +17,9 @@ $(document).ready(function() {
     }, "text");
 
     var commentCounter = 0;
+    var comments = undefined;
     $.get(url+"/comment/idea/"+id, function(data) {
-        var comments = JSON.parse(data);
+        comments = JSON.parse(data);
         addNComments(comments, 3);
     }, "text");
 
@@ -32,6 +33,7 @@ $(document).ready(function() {
         setupIdeaDetails(idea);
         setupMap(idea);
         createChangeStateModal(idea);
+        createLeaveCommentModal(idea);
     }, "text");
 
     function setupCategory(categoryID, categoryName) {
@@ -88,7 +90,6 @@ $(document).ready(function() {
             end = comments.length;
             showAddMore = false;
         }
-
 
         for (var i = commentCounter; i < end; i++) {
             $('#comments').append(createComment(comments[i]));
@@ -181,6 +182,45 @@ $(document).ready(function() {
                         setupState(getCurrentStateValue());
                         modal.modal('hide');
                         currentState.removeClass('active');
+                    }
+                });
+            });
+        });
+    }
+
+    function createLeaveCommentModal(idea) {
+        $('#leaveComment').on('show.bs.modal', function (event) {
+
+            var modal = $(this);
+            $('#commentText').val("");
+
+            $("#addCommentModalBtn").off("click").on("click", function() {
+                var newComment = {userID: getCurrentID(), ideaID: idea.id, commentText: $('#commentText').val().trim()};
+                $.ajax({
+                    "url" : url+"/comment/add",
+                    "type" : "POST",
+                    "data" : JSON.stringify(newComment),
+                    "contentType" : "application/json; charset=utf-8",
+                    "dataType" : "json",    
+                    "success" : function(response) {
+                        if (response > 0) {
+                            idea.numOfComments++;
+                            setupComments(idea.numOfComments);
+                            var commentToAdd = {
+                                text: $('#commentText').val().trim(),
+                                isByCitizen: false,
+                                userName: getCurrentName(),
+                                dateCreated: getCurrentTimestamp()
+                            };
+                            $('#comments').html('');
+                            commentCounter = 0;
+                            comments.unshift(commentToAdd);
+                            addNComments(comments, 3);
+                            modal.modal('hide');
+                        } else {
+                            //ERRROR
+                            console.log("ERROR adding comment");
+                        }
                     }
                 });
             });

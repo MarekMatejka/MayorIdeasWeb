@@ -20,7 +20,7 @@ function getCurrentName() {
 
 function getCurrentID() {
 	//return Cookies.get('ID');
-	return 1;
+	return 3;
 }
 
 function login(ID, name, username) {
