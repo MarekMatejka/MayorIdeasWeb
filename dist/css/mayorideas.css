@@ -26,7 +26,12 @@
 	margin: 0 auto;
 }
 
-.state-open {
+.centered {
+	display: block;
+	margin: 0 auto;
+}
+
+.state-open, .comments {
 	color: #5f8dd3;
 }
 
@@ -34,8 +39,12 @@
 	color: #ffbb33;
 }
 
-.state-closed {
+.state-closed, .thumbs-up{
 	color: #99cc00;
+}
+
+.thumbs-down {
+	color: #ff4444;
 }
 
 .cell-centered {
