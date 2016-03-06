@@ -5,13 +5,11 @@ $(document).ready(function() {
     $('#dataTable_wrapper').hide();
 
 	//var id = sessionStorage.getItem("id");
-    var id = 10;
+    var id = 11;
 
     $.get(url+"/image/get/idea/"+id, function(data) {
         var ideaImageIds = JSON.parse(data);
-        console.log(ideaImageIds);
         for (var i = 0; i < ideaImageIds.length; i++) {
-            console.log("adding picture "+i);
             $("#carousel").append(  "<div class='col-lg-"+(12/ideaImageIds.length)+"'>"+
                                         "<img src='"+(url+"/image/get/"+ideaImageIds[i])+"' height='300px'></img>"+
                                     "</div>")
@@ -21,13 +19,11 @@ $(document).ready(function() {
     var commentCounter = 0;
     $.get(url+"/comment/idea/"+id, function(data) {
         var comments = JSON.parse(data);
-        console.log(comments);
-        addNComments(comments, 5);
+        addNComments(comments, 3);
     }, "text");
 
     $.get(url+"/idea/"+id+"?user_id="+getCurrentID(), function(data) {
         var idea = JSON.parse(data);
-        console.log(idea);
         $("#idea_name").html(idea.title);
         setupCategory(idea.categoryID, idea.categoryName);
         setupScore(idea.score);
@@ -35,6 +31,7 @@ $(document).ready(function() {
         setupState(idea.ideaState);
         setupIdeaDetails(idea);
         setupMap(idea);
+        createChangeStateModal(idea);
     }, "text");
 
     function setupCategory(categoryID, categoryName) {
@@ -57,7 +54,6 @@ $(document).ready(function() {
     }
 
     function setupState(state) {
-        console.log(state);
         if (state == "OPEN") {
             $("#state").html('<i class="fa fa-lg state-open">OPEN</i>');
         } else if (state == "IN_PROGRESS") {
@@ -113,7 +109,7 @@ $(document).ready(function() {
 
     function createShowMoreCommentsButton(showCount) {
         return '<button id="showMoreComments" type="button" class="btn btn-link" style="width: 100%">'+
-                    'Show '+showCount+' more comments'+
+                    'Show '+showCount+' more comment(s)'+
                 '</button>';
     }
 
@@ -125,13 +121,12 @@ $(document).ready(function() {
     }
 
     function createComment(comment) {
-        var footerColor = comment.isByCitizen ? "#5f8dd3" : "#FFD54F";
-        var footerTextColor = comment.isByCitizen ? "white" : "black";
+        var commentType = comment.isByCitizen ? "citizenComment" : "governmentComment";
         return '<div class="panel panel-default">'+
                     '<div class="panel-body">'+
                         '<p>"'+comment.text+'"</p>'+
                     '</div>'+
-                    '<div class="panel-footer" style="background-color: '+footerColor+'; color: '+footerTextColor+'">'+
+                    '<div class="panel-footer '+commentType+'">'+
                         comment.userName+', '+comment.dateCreated+
                     '</div>'+
                 '</div>'
@@ -151,5 +146,48 @@ $(document).ready(function() {
             content: '<p>'+idea.title+'</p>'
           }
         });
+    }
+
+    var currentState = null;
+    function createChangeStateModal(idea) {
+        $('#changeState').on('show.bs.modal', function (event) {
+
+            var modal = $(this);
+            if (idea.ideaState == "OPEN") {
+                currentState = modal.find('#stateOpen');
+                currentState.addClass('active');
+            } else if (idea.ideaState == "IN_PROGRESS") {
+                currentState = modal.find('#stateInProgress');
+                currentState.addClass('active');
+            } else if (idea.ideaState == "RESOLVED") {
+                currentState = modal.find('#stateResolved');
+                currentState.addClass('active');
+            }
+
+            $(".state").click(function() {
+                if (currentState != null) {
+                    currentState.removeClass('active');
+                }
+                currentState = $(this);
+                $(this).addClass('active');
+            });
+
+            $("#confirmState").off("click").on("click", function() {
+                $.ajax({
+                    url: url+"/idea/state?idea_id="+idea.id+"&state="+getCurrentStateValue(),
+                    type: 'PUT',
+                    success: function(response) {
+                        idea.ideaState = getCurrentStateValue();
+                        setupState(getCurrentStateValue());
+                        modal.modal('hide');
+                        currentState.removeClass('active');
+                    }
+                });
+            });
+        });
+    }
+
+    function getCurrentStateValue() {
+        return currentState.text().trim().replace(' ', '_').toUpperCase();
     }
 });	

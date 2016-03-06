@@ -111,6 +111,18 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-lg-6 panel-body" style="padding-top: 0px">
+                    <button id="changeIdeaState" type="button" class="btn btn-primary" style="width: 100%; margin: 5 5;" data-toggle='modal' data-target='#changeState'>
+                        Change idea state
+                    </button>
+                </div>
+                <div class="col-lg-6 panel-body" style="padding-top: 0px">
+                    <button id="addComment" type="button" class="btn btn-primary" style="width: 100%; margin: 5 5;" data-toggle='modal' data-target='#leaveComment'>
+                        Leave a comment
+                    </button>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-lg-6">
                     <div class="panel panel-default">
                         <div class="panel-heading">
@@ -164,6 +176,44 @@
                 </div>
                 <div class="centered copyright">
                     Marek Matejka, KCL final year project. All rights reserved.
+                </div>
+            </div>
+            <div class="modal fade" id="changeState" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <h4 class="modal-title">Change idea state</h4>
+                        </div>
+                          
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+                            <div class="btn-group" role="group" style="width: 100%">
+                                <button id="stateOpen" type="button" class="btn btn-default state-open state">
+                                    Open
+                                </button>
+                                <button id="stateInProgress"type="button" class="btn btn-default state-inprogress state">
+                                    In progress
+                                </button>
+                                <button id="stateResolved" type="button" class="btn btn-default state-closed state">
+                                    Resolved
+                                </button>
+                            </div>
+                        </div>
+                            
+                        <!-- Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" id="confirmState" class="btn btn-success">
+                                <i class='fa fa-check'></i> Change state
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
