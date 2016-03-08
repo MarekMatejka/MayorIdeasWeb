@@ -4,8 +4,8 @@ $(document).ready(function() {
 
     $('#dataTable_wrapper').hide();
 
-	//var id = sessionStorage.getItem("id");
-    var id = 11;
+	var id = sessionStorage.getItem("id");
+    //var id = 11;
 
     $.get(url+"/image/get/idea/"+id, function(data) {
         var ideaImageIds = JSON.parse(data);

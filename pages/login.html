@@ -46,7 +46,9 @@
                                 <button id="loginButton" type="button" class="btn btn-lg btn-success btn-block">Login</button>
                             </fieldset>
                             <div style="padding-top: 10px;">
-                                <a href='./register.html'>Don't have an account? Create one here.</a>
+                                <button id="createAccountModal" type="button" class="btn btn-link" style="width: 100%; margin: 5 5;" data-toggle='modal' data-target='#createAccount'>
+                                    Don't have an account? Create one here.
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -63,6 +65,48 @@
                 </div>
             </div>
         </div>
+        <div class="modal fade" id="createAccount" tabindex="-1" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">
+                                <span aria-hidden="true">&times;</span>
+                                <span class="sr-only">Close</span>
+                            </button>
+                            <h4 class="modal-title">Create a new account</h4>
+                        </div>
+                          
+                        <!-- Modal Body -->
+                        <div class="modal-body">
+                            <div id="error" class="error-text"></div>
+                            <fieldset>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Full name" id="fullname" type="text" autofocus>
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Email" id="email" type="text">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Password" id="passwordOne" type="password" value="">
+                                </div>
+                                <div class="form-group">
+                                    <input class="form-control" placeholder="Confirm password" id="passwordConfirm" type="password" value="">
+                                </div>
+                            </fieldset>
+                        </div>
+                            
+                        <!-- Modal Footer -->
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" id="newAccountSubmit" class="btn btn-success">
+                                <i class='fa fa-plus'></i> Create account
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
     </div>
 
     <!-- libs -->

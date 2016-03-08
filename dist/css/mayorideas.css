@@ -47,6 +47,10 @@
 	color: #ff4444;
 }
 
+.error-text {
+	color: red;
+}
+
 .citizenComment {
 	background-color: #5f8dd3; 
 	color: white; 
