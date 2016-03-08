@@ -2,162 +2,37 @@ $(document).ready(function() {
 
 	//checkLoggedIn();
 
-	$('#chartGroup').hide();
-	$('#title').html("Overview of "+getCurrentProperty());
-	shouldShowStaff();
+	$.get(url+"/stats/weekly/", function(data) {
 
-	var currentData;
+        $("#newIdeasNumber").html('<p class="weekly-stats-number">'+data.newIdeasPerWeek+'</p>');
+        $("#newIdeasTrend").html(createTrend(data.newIdeasTrend));
 
-	$.get(url+"/stats/index/"+getCurrentPropertyID(), function(data) {
+		$("#inProgressIdeasNumber").html('<p class="weekly-stats-number">'+data.inProgressIdeasPerWeek+'</p>');
+        $("#inProgressIdeasTrend").html(createTrend(data.inProgressIdeasTrend));
 
-		currentData = data;
+        $("#closedIdeasNumber").html('<p class="weekly-stats-number">'+data.closedIdeasPerWeek+'</p>');
+        $("#closedIdeasTrend").html(createTrend(data.closedIdeasTrend));
 
-        $("#numOfUncollectedParcels").html(data.totalUncollectedParcels);
-		$("#numOfRecipients").html(data.totalRecipients);
-		$("#numOfStaff").html(data.totalStaff);
-		
-		createChart('Day', data.parcelsByDate);
-		enableButtons();	
-		$('#day').addClass('active');
-		$('#loadingChartGroup').hide();
-		$('#chartGroup').show();
+        $("#interactionsNumber").html('<p class="weekly-stats-number">'+data.interactionsPerWeek+'</p>');
+        $("#interactionsTrend").html(createTrend(data.interactionsTrend));
+
     }, "json");
 
-	$("#day").on("click", function(event) {
-		if (!$('#day').hasClass('active')) {
-			removeActiveClass();
-	        $('#day').addClass('active');
-	        createChart('Day', currentData.parcelsByDate);
-	    }
-    });
+    function createTrend(trend) {
+    	if (trend > 0) {
+    		return '<i class="material-icons" style="color:green; font-size:40px;">trending_up</i>';
+    	} else if (trend < 0) {
+    		return '<i class="material-icons" style="color:red; font-size:40px;">trending_down</i>';
+    	} else {
+    		return '<i class="material-icons" style="color:black; font-size:40px;">trending_flat</i>';
+    	}
+    }
 
-    $("#weekday").on("click", function(event) {
-    	if (!$('#weekday').hasClass('active')) {
-	    	removeActiveClass();
-	        $('#weekday').addClass('active');
-	        createChart('Day of the Week', currentData.parcelsByDayOfWeek);
-	    }
-    });
+    $.get(url+"/stats/overall/", function(data) {
 
-    $("#month").on("click", function(event) {
-    	if (!$('#month').hasClass('active')) {
-	    	removeActiveClass();
-	        $('#month').addClass('active');
-	        createChart('Month', currentData.parcelsByMonth);
-	    }
-    });
+        $("#openIdeasCount").html(data.totalOpenIdeas);
+        $("#inProgressIdeasCount").html(data.totalInProgressIdeas);
+		$("#closedIdeasCount").html(data.totalClosedIdeas);
 
-	function extractLabels(data, reverseData) {
-		var labels = [];
-		if (reverseData) {
-			for (var i = data.length-1; i >= 0; i--) {
-				labels.push(data[i].type);
-			}
-		} else {
-			for (var i = 0; i < data.length; i++) {
-				labels.push(data[i].type);
-			}
-		}
-		return labels;
-	}
-
-	function extractDataCol1(data, reverseData) {
-		console.log(data);
-		var values = [];
-		if (reverseData) {
-			for (var i = data.length-1; i >= 0; i--) {
-				values.push(data[i].numReceivedParcels);
-			}
-		} else {
-			for (var i = 0; i < data.length; i++) {
-				values.push(data[i].numReceivedParcels);
-			}
-		}
-		return values;
-	}
-
-	function extractDataCol2(data, reverseData) {
-		var values = [];
-		if (reverseData) {
-			for (var i = data.length-1; i >= 0; i--) {
-				values.push(data[i].numCollectedParcels);
-			}
-		} else {
-			for (var i = 0; i < data.length; i++) {
-				values.push(data[i].numCollectedParcels);
-			}
-		}
-		return values;
-	}
-
-	function generateChartData(data, reverseData) {
-		return [{
-	            name: 'Parcels Received',
-	            data: extractDataCol1(data, reverseData)
-
-	        }, {
-	            name: 'Parcels Collected',
-	            data: extractDataCol2(data, reverseData)
-
-	        }];
-	}
-
-	function createChart(title, data) {
-		var reverseData = title === 'Day';
-		var seriesData = generateChartData(data, reverseData);
-		var labels = extractLabels(data, reverseData);
-		$('#overviewChart').highcharts({
-	        chart: {
-	            type: 'column'
-	        },
-	        title: {
-	            text: 'Parcels by ' + title
-	        },
-	        xAxis: {
-	            categories: labels,
-	            crosshair: true
-	        },
-	        yAxis: {
-	            min: 0,
-	            title: {
-	                text: '# of Parcels'
-	            }
-	        },
-	        tooltip: {
-	            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
-	            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
-	                '<td style="padding:0"><b>{point.y}</b></td></tr>',
-	            footerFormat: '</table>',
-	            shared: true,
-	            useHTML: true
-	        },
-	        plotOptions: {
-	            column: {
-	                pointPadding: 0.2,
-	                borderWidth: 0
-	            }
-	        },
-	        series: seriesData
-	    });
-	}
-
-	function removeActiveClass() {
-		$('#day').removeClass('active');
-		$('#weekday').removeClass('active');
-		$('#month').removeClass('active');
-	}
-
-	function enableButtons() {
-		$('#day').removeClass('disabled');
-		$('#weekday').removeClass('disabled');
-		$('#month').removeClass('disabled');
-	}
-
-	function shouldShowStaff() {
-		if (getPrivileges() >= 10) {
-			$('#staffPanel').show();
-		} else {
-			$('#staffPanel').hide();
-		}
-	}
+    }, "json");
 });

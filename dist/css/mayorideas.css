@@ -21,6 +21,18 @@
 	font-weight: bold;
 }
 
+.weekly-stats-number {
+	font-size:30px; 
+	font-style: bold; 
+	margin: 0 0; 
+	text-align: center;
+}
+
+.weekly-stats-text {
+	font-size:20px; 
+	margin: 0 0;
+}
+
 #carousel img {
 	display: block;
 	margin: 0 auto;

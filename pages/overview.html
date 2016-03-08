@@ -177,42 +177,23 @@
                 <div class="col-lg-4">
                     <div class="panel panel-default">
                         <div class="panel-heading centered-header">
-                            <i class="material-icons">show_chart</i> Weekly statistics
+                            <i class="material-icons">trending_up</i> Weekly statistics
                         </div>
                         <div class="panel-body">
                             <div class="panel panel-default">
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-6 centered-stats">
-                                            <p style="font-size:20px; margin: 0 0;">
+                                            <p class="weekly-stats-text">
                                                 New ideas
                                             </p>
                                         </div>
-                                        <div class="col-lg-3 centered-stats">
-                                            <p style="font-size:30px; font-style: bold; margin: 0 0;text-align: center;">
-                                                15
+                                        <div class="col-lg-3 centered-stats" id="newIdeasNumber">
+                                            <p class="weekly-stats-number">
+                                                0
                                             </p>
                                         </div>
-                                        <div class="col-lg-3">
-                                            <i class="material-icons" style="color:green; font-size:40px;">trending_up</i>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="panel panel-default">
-                                <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-lg-6 centered-stats">
-                                            <p style="font-size:20px; margin: 0 0; ">
-                                                Closed ideas
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-3 centered-stats">
-                                            <p style="font-size:30px; font-style: bold; margin: 0 0;text-align: center;">
-                                                8
-                                            </p>
-                                        </div>
-                                        <div class="col-lg-3">
+                                        <div class="col-lg-3" id="newIdeasTrend">
                                             <i class="material-icons" style="color:black; font-size:40px;">trending_flat</i>
                                         </div>
                                     </div>
@@ -222,17 +203,55 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-6 centered-stats">
-                                            <p style="font-size:20px; margin: 0 0;">
+                                            <p class="weekly-stats-text">
+                                                In-progress ideas
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-3 centered-stats" id="inProgressIdeasNumber">
+                                            <p class="weekly-stats-number">
+                                                0
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-3" id="inProgressIdeasTrend">
+                                            <i class="material-icons" style="color:black; font-size:40px;">trending_flat</i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-6 centered-stats">
+                                            <p class="weekly-stats-text">
+                                                Closed ideas
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-3 centered-stats" id="closedIdeasNumber">
+                                            <p class="weekly-stats-number">
+                                                0
+                                            </p>
+                                        </div>
+                                        <div class="col-lg-3" id="closedIdeasTrend">
+                                            <i class="material-icons" style="color:black; font-size:40px;">trending_flat</i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-6 centered-stats">
+                                            <p class="weekly-stats-text">
                                                 Total interactions
                                             </p>
                                         </div>
-                                        <div class="col-lg-3 centered-stats">
-                                            <p style="font-size:30px; font-style: bold; margin: 0 0; text-align: center;">
-                                                123
+                                        <div class="col-lg-3 centered-stats" id="interactionsNumber">
+                                            <p class="weekly-stats-number">
+                                                0
                                             </p>
                                         </div>
-                                        <div class="col-lg-3">
-                                            <i class="material-icons" style="color:red; font-size:40px;">trending_down</i>
+                                        <div class="col-lg-3" id="interactionsTrend" >
+                                            <i class="material-icons" style="color:black; font-size:40px;">trending_flat</i>
                                         </div>
                                     </div>
                                 </div>
