@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	checkLoggedIn();
+	//checkLoggedIn();
 
 	$('#chartGroup').hide();
 	$('#title').html("Overview of "+getCurrentProperty());

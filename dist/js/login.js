@@ -95,7 +95,6 @@ $(document).ready(function() {
 	                "success" : function(response) {
 	                    if (response.ID >= 0) {
 							//SUCCESS
-							console.log(response);
 							$('#newAccountSubmit').html('<i class="fa fa-check"></i> Account created');
 							login(
 								response.ID, 
