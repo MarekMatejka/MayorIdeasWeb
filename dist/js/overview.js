@@ -35,4 +35,54 @@ $(document).ready(function() {
 		$("#closedIdeasCount").html(data.totalClosedIdeas);
 
     }, "json");
+
+    $.get(url+"/idea/trending?user_id=-1", function(data) {
+    	//var ideas = JSON.parse(data); //aes.decrypt(data)
+        var table = $('#trendingIdeas').DataTable( {
+            data : data,
+            columns : [
+                {"data": "title", "title" : "Idea Title"},
+                {"data": "categoryName", "title" : "Category", "class" : "cell-centered"},
+                {"data": "dateCreated", "title" : "Added on"},
+                {"data": "ideaState", "title" : "Idea State", "class" : "cell-centered"},
+                {"data": "score", "title" : "Score", "class" : "cell-centered"}
+            ],
+            columnDefs: 
+            [
+	            {
+	                targets: 3,
+	                createdCell: function (td, cellData, rowData, row, col) {
+	                    if (cellData == 'OPEN') {
+	                        $(td).addClass('state-open');
+	                    } else if (cellData == 'IN_PROGRESS') {
+	                        $(td).addClass('state-inprogress');
+	                    } else if (cellData == 'RESOLVED') {
+	                        $(td).addClass('state-closed');
+	                    }
+	                }
+	            },
+	            {
+	                targets: 4,
+	                createdCell: function (td, cellData, rowData, row, col) {
+		                if (cellData > 0) {
+		                    $(td).css('color', '#99cc00');
+		                } else if (cellData < 0) {
+		                    $(td).css('color', 'red');
+		                } else {
+		                    $(td).css('color', 'black');
+		                }
+		            }
+		        }
+            ],
+            createdRow: function ( row, data, index ) {
+                $(row).addClass('bold');
+            },
+            order: [[4, 'desc']],
+            destroy: true
+        } );  
+
+        $('#loadingTableGroup').hide();
+        $('#dataTable_wrapper').show();
+    }, "json");
+
 });
