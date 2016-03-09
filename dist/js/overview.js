@@ -1,6 +1,7 @@
 $(document).ready(function() {
 
 	//checkLoggedIn();
+	var table;
 
 	$.get(url+"/stats/weekly/", function(data) {
 
@@ -38,7 +39,7 @@ $(document).ready(function() {
 
     $.get(url+"/idea/trending?user_id=-1", function(data) {
     	//var ideas = JSON.parse(data); //aes.decrypt(data)
-        var table = $('#trendingIdeas').DataTable( {
+        table = $('#trendingIdeas').DataTable( {
             data : data,
             columns : [
                 {"data": "title", "title" : "Idea Title"},
@@ -84,5 +85,14 @@ $(document).ready(function() {
         $('#loadingTableGroup').hide();
         $('#dataTable_wrapper').show();
     }, "json");
+
+    $("#trendingIdeas").on("click", ".bold", function(event){
+        var row = table.row($(this));
+        var idea = row.data();
+
+        sessionStorage.setItem("id", idea.id);
+
+        window.location = "./idea_details.html";
+    });
 
 });
