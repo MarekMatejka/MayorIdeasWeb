@@ -1,7 +1,7 @@
 $(document).ready(function() {
 
-    checkLoggedIn();
-    checkPrivilegesAtLeast(10);
+    //checkLoggedIn();
+    //checkPrivilegesAtLeast(10);
 
     $('#dataTable_wrapper').hide();
     $('[data-toggle="popover"]').popover();

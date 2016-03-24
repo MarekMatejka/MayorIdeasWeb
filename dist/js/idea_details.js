@@ -66,7 +66,8 @@ $(document).ready(function() {
     }
 
     function setupIdeaDetails(idea) {
-        $("#ideaDetails").append("<p style='color: #757575'>by "+idea.authorName+", "+idea.dateCreated+"</p>");
+        var aes = new AesUtil();
+        $("#ideaDetails").append("<p style='color: #757575'>by "+aes.decrypt(idea.authorName)+", "+idea.dateCreated+"</p>");
         $("#ideaDetails").append("<p><b>Description:</b> "+idea.description+"</p>");
     }
 
@@ -122,13 +123,14 @@ $(document).ready(function() {
     }
 
     function createComment(comment) {
+        var aes = new AesUtil();
         var commentType = comment.isByCitizen ? "citizenComment" : "governmentComment";
         return '<div class="panel panel-default">'+
                     '<div class="panel-body">'+
                         '<p>"'+comment.text+'"</p>'+
                     '</div>'+
                     '<div class="panel-footer '+commentType+'">'+
-                        comment.userName+', '+comment.dateCreated+
+                        aes.decrypt(comment.userName)+', '+comment.dateCreated+
                     '</div>'+
                 '</div>'
     }

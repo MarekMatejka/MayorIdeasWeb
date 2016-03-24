@@ -1,5 +1,5 @@
-var passPhrase = 'the slow orange squirrel jumps over the old black cat';
-var salt = "3FF2EC019C627B945225DEBAAEC141B6985FE84C95A70EB132882F88C0A59A55";
+var passPhrase = 'some totally secure password should be right here';
+var salt = "3FF2EC019C627B945225DEBAAEA8C628D4DFE84C95A70EB132882F88C0A59A55";
 var iv = 'F27D5C9927726BAB407510B1BDD3D137';
 
 var AesUtil = function() {

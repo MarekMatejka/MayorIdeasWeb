@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	var salt = "eFmVkPMF52GaEgW";
+	var salt = "eFmVkKCL16GaEgW";
 	var aes = new AesUtil();
 
 	$('#loginError').hide();
@@ -21,8 +21,9 @@ $(document).ready(function() {
     });
 
 	function tryLogin(username, password) {
+        var aes = new AesUtil();
 		$('#loginButton').html('<i class="fa fa-circle-o-notch fa-spin"></i> Logging in');
-		var loginDetails = {username:username, password:password, isCitizen:false};
+		var loginDetails = {username:aes.encrypt(username), password:CryptoJS.SHA256(password+salt);, isCitizen:false};
         $.ajax({
                 "url" : url+"/login",
                 "type" : "POST",
@@ -149,10 +150,11 @@ $(document).ready(function() {
     }
 
     function createNewUserDetails(fullname, email, password1) {
-    	return {
-    		username: email,
-    		password: password1,
-    		name: fullname,
+    	var aes = new AesUtil();
+        return {
+    		username: aes.encrypt(email),
+    		password: CryptoJS.SHA256(password1+salt),
+    		name: aes.encrypt(fullname),
     		isCitizen: false
     	};
     }

@@ -1,11 +1,12 @@
 //TESTING
-var url = 'http://10.193.140.181:8015';
+//
+var url = 'http://10.193.140.181:8015/';
 
 //UNI
 //var url = 'http://10.40.130.231:8015/';
 
 //REAL
-//var url = 'http://52.90.130.242:8015/';
+//var url = 'http://52.49.91.43:8015/';
 
 function getCurrentTimestamp() {
 	//dd.MM.yyyy kk:mm:ss
