@@ -15,7 +15,7 @@ function getCurrentUsername() {
 
 function getCurrentName() {
 	//return Cookies.get('name');
-	return 'Marek Matejka';
+	return 'Marek Gov';
 }
 
 function getCurrentID() {

@@ -23,9 +23,9 @@ $(document).ready(function() {
 	function tryLogin(username, password) {
         var aes = new AesUtil();
 		$('#loginButton').html('<i class="fa fa-circle-o-notch fa-spin"></i> Logging in');
-		var loginDetails = {username:aes.encrypt(username), password:CryptoJS.SHA256(password+salt);, isCitizen:false};
+		var loginDetails = {username:aes.encrypt(username), password:""+CryptoJS.SHA256(password+salt), isCitizen:false};
         $.ajax({
-                "url" : url+"/login",
+                "url" : url+"login",
                 "type" : "POST",
                 "data" : JSON.stringify(loginDetails),
                 "contentType" : "application/json; charset=utf-8",
@@ -153,7 +153,7 @@ $(document).ready(function() {
     	var aes = new AesUtil();
         return {
     		username: aes.encrypt(email),
-    		password: CryptoJS.SHA256(password1+salt),
+    		password: ""+CryptoJS.SHA256(password1+salt),
     		name: aes.encrypt(fullname),
     		isCitizen: false
     	};
