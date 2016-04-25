@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-    //checkLoggedIn();
+    checkLoggedIn();
 
     $('#dataTable_wrapper').hide();
 

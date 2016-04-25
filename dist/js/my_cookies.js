@@ -9,18 +9,18 @@ function checkLoggedIn() {
 }
 
 function getCurrentUsername() {
-	//return Cookies.get('username');
-	return 'marek';
+	return Cookies.get('username');
+	//return 'marek';
 }
 
 function getCurrentName() {
-	//return Cookies.get('name');
-	return 'Marek Gov';
+	return Cookies.get('name');
+	//return 'Marek Gov';
 }
 
 function getCurrentID() {
-	//return Cookies.get('ID');
-	return 3;
+	return Cookies.get('ID');
+	//return 3;
 }
 
 function login(ID, name, username) {

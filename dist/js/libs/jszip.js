@@ -1,3 +1,4 @@
+/* from https://stuk.github.io/jszip/ */
 var JSZip = function(data, options) {
     this.files = {};
     this.root = "";

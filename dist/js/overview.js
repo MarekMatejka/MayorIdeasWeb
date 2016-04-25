@@ -1,6 +1,6 @@
 $(document).ready(function() {
 
-	//checkLoggedIn();
+	checkLoggedIn();
 	var table;
 
 	$.get(url+"/stats/weekly/", function(data) {

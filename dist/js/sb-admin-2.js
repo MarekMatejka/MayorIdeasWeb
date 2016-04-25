@@ -1,3 +1,4 @@
+//from http://startbootstrap.com/template-overviews/sb-admin-2/
 $(function() {
 
     $('#side-menu').metisMenu();
